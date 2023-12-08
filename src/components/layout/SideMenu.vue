@@ -1,52 +1,45 @@
 <template>
-  <n-menu :options="menuOptions" @update:value="handleUpdateValue" />
+  <n-menu :value="menuValue" :options="menuOptions" @update:value="handleUpdateValue" />
 </template>
 
 <script setup lang="ts">
-import { h } from 'vue'
-import { useMessage } from 'naive-ui'
+import { watch, ref, onUnmounted } from 'vue'
 import type { MenuOption } from 'naive-ui'
+import route, { type RouteItem } from '@/router/route'
+import { useRouter, useRoute } from 'vue-router'
 
 defineOptions({
   name: 'SideMenu',
 })
 
-const message = useMessage();
+const router = useRouter()
+const routeRef = useRoute()
 
-const menuOptions: MenuOption[] = [
-  {
-    label: () =>
-      h(
-        'a',
-        {
-          href: 'https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F',
-          target: '_blank',
-          rel: 'noopenner noreferrer'
-        },
-        '且听风吟'
-      ),
-    key: 'hear-the-wind-sing',
-  },
-  {
-    label: '1973年的弹珠玩具',
-    key: 'pinball-1973',
-    disabled: true,
-    children: [
-      {
-        label: '鼠',
-        key: 'rat'
-      }
-    ]
-  },
-  {
-    label: '寻羊冒险记',
-    key: 'a-wild-sheep-chase',
-    disabled: true
-  },
-]
+const menuValue = ref('');
 
-const handleUpdateValue =  (key: string, item: MenuOption) => {
-  message.info('[onUpdate:value]: ' + JSON.stringify(key))
-  message.info('[onUpdate:value]: ' + JSON.stringify(item))
+const getMenuFromRoute = (root: RouteItem[]): MenuOption[] => {
+  return root.map((item) => {
+    return {
+      ...item,
+      children: item.children ? getMenuFromRoute(item.children) : item.children,
+    }
+  })
 }
+
+const menuOptions: MenuOption[] = getMenuFromRoute(route);
+
+const handleUpdateValue =  (key: string) => {
+  menuValue.value = key;
+  router.push({ name: key })
+}
+
+const unwatch = watch(
+  () => routeRef.name,
+  (val) => {
+    menuValue.value = (val || '') as string;
+  },
+  { immediate: true }
+)
+
+onUnmounted(unwatch);
 </script>
