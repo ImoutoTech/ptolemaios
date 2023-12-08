@@ -6,7 +6,7 @@ import SideMenu from '@/components/layout/SideMenu.vue'
 
 <template>
   <n-layout has-sider>
-    <n-layout-sider>
+    <n-layout-sider class="layout-sider">
       <side-menu />
     </n-layout-sider>
     <n-layout>
@@ -18,3 +18,10 @@ import SideMenu from '@/components/layout/SideMenu.vue'
     </n-layout>
   </n-layout>
 </template>
+
+<style lang="scss" scoped>
+  .layout-sider {
+    background-color: rgb(250, 250, 250);
+    @apply min-h-screen;
+  }
+</style>
