@@ -1,5 +1,12 @@
 <template>
-  <n-menu :value="menuValue" :options="menuOptions" @update:value="handleUpdateValue"/>
+  <n-menu
+    :value="menuValue"
+    :options="menuOptions"
+    :collapsed="sidebar.collapsed"
+    :collapsed-width="64"
+    :collapsed-icon-size="22"
+    @update:value="handleUpdateValue"
+  />
 </template>
 
 <script setup lang="ts">
@@ -7,6 +14,10 @@ import { watch, ref, onUnmounted } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import route, { type RouteItem } from '@/router/route'
 import { useRouter, useRoute } from 'vue-router'
+
+import { useSidebarStore } from '@/stores/sidebar'
+
+const sidebar = useSidebarStore()
 
 defineOptions({
   name: 'SideMenu',
