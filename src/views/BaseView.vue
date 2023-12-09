@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 
 import SideMenu from '@/components/layout/SideMenu.vue'
+import SiteHeader from '@/components/layout/SiteHeader.vue'
 </script>
 
 <template>
@@ -10,7 +11,9 @@ import SideMenu from '@/components/layout/SideMenu.vue'
       <side-menu />
     </n-layout-sider>
     <n-layout>
-      <n-layout-header>颐和园路</n-layout-header>
+      <n-layout-header>
+        <site-header />
+      </n-layout-header>
       <n-layout-content content-style="padding: 24px;">
         <RouterView />
       </n-layout-content>
