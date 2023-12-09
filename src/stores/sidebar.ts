@@ -7,4 +7,8 @@ export const useSidebarStore = defineStore('sidebar', () => {
   const toggleSideBar = (value?: boolean) => collapsed.value = value ?? !collapsed.value
 
   return { collapsed, toggleSideBar }
+}, {
+  persist: {
+    key: 'siderbar-store',
+  },
 })
