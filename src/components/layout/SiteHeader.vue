@@ -22,6 +22,8 @@
 import { computed } from 'vue'
 import { SITE_TITLE, ENV } from '@/config/index'
 import { type SiteHeaderMenuItem } from './types'
+import { useMessage } from 'naive-ui'
+import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 import { useGlobalStore } from '@/stores/global'
 import { SunnyOutline, MoonOutline } from '@vicons/ionicons5'
@@ -32,9 +34,17 @@ defineOptions({
 
 const userStore = useUserStore()
 const globalStore = useGlobalStore()
+const router = useRouter()
+const message = useMessage()
 
 const handleRedirectSSO = () => {
   window.location.href = `${ENV.SSO_URL}/callback/${ENV.SSO_KEY}`
+}
+
+const logout = () => {
+  userStore.userLogout()
+  router.push('/')
+  message.success('退出成功')
 }
 
 const menu = computed<SiteHeaderMenuItem[]>(() => {
@@ -52,7 +62,7 @@ const menu = computed<SiteHeaderMenuItem[]>(() => {
     {
       label: '登出',
       show: userStore.hasLoggedIn,
-      onClick: userStore.userLogout
+      onClick: logout
     }
   ].filter((item) => item.show)
 })

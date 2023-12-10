@@ -1,16 +1,18 @@
 <template>
-  <n-result v-bind="displayResultBinds" class="mt-20">
-    <template v-if="displayResultBinds.status === 'loading'" #icon>
-      <div class="animate-bounce h-20 w-20">
-        <n-icon :component="HeartSharp" size="80" />
-      </div>
-    </template>
-    <template #footer>
-      <n-button v-if="displayResultBinds.status === 'success'" @click="loginRedirect"
-        >立即跳转</n-button
-      >
-    </template>
-  </n-result>
+  <div class="h-[calc(100vh-119px)] flex items-center justify-center">
+    <n-result v-bind="displayResultBinds">
+      <template v-if="displayResultBinds.status === 'loading'" #icon>
+        <div class="animate-bounce h-20 w-20">
+          <n-icon :component="HeartSharp" size="80" />
+        </div>
+      </template>
+      <template #footer>
+        <n-button v-if="displayResultBinds.status === 'success'" @click="loginRedirect"
+          >立即跳转</n-button
+        >
+      </template>
+    </n-result>
+  </div>
 </template>
 
 <script setup lang="ts">

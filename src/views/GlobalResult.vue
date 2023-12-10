@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20">
+  <div class="h-[calc(100vh-119px)] flex items-center justify-center">
     <n-result v-bind="globalStore.resultData"></n-result>
   </div>
 </template>
