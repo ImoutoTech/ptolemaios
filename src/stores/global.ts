@@ -6,6 +6,8 @@ export const useGlobalStore = defineStore(
   () => {
     const sidebarCollapsed = ref(true)
 
+    const theme = ref<'dark' | 'light'>()
+
     const toggleSideBar = (value?: boolean) =>
       (sidebarCollapsed.value = value ?? !sidebarCollapsed.value)
 
@@ -14,7 +16,11 @@ export const useGlobalStore = defineStore(
     const updateResultData = (value: Record<'title' | 'status' | 'description', string>) =>
       (resultData.value = value)
 
-    return { sidebarCollapsed, resultData, toggleSideBar, updateResultData }
+    const switchTheme = () => {
+      theme.value = theme.value === 'light' ? 'dark' : 'light'
+    }
+
+    return { sidebarCollapsed, resultData, theme, toggleSideBar, updateResultData, switchTheme }
   },
   {
     persist: {
