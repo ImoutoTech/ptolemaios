@@ -6,13 +6,15 @@ interface UserData {
   role: 0 | 1
   avatar: string
   email: string
+  nickname: string
 }
 
 const INIT_USER_DATA: UserData = {
   id: -1,
   role: 1,
   avatar: '',
-  email: ''
+  email: '',
+  nickname: ''
 }
 
 export const useUserStore = defineStore(

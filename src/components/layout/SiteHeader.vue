@@ -1,7 +1,8 @@
 <template>
   <div class="site-header">
-    <span>{{ SITE_TITLE }}</span>
+    <span class="font-bold text-xl cursor-default select-none">{{ SITE_TITLE }}</span>
     <n-space>
+      <n-button v-if="userStore.hasLoggedIn" text>{{ userStore.userData.nickname }}</n-button>
       <n-button v-for="item in menu" :key="item.label" text @click="item.onClick">
         {{ item.label }}
       </n-button>
