@@ -10,14 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import { watch, ref, onUnmounted } from 'vue'
+import { watch, ref, onUnmounted, computed } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import route, { type RouteItem } from '@/router/route'
 import { useRouter, useRoute } from 'vue-router'
 
 import { useSidebarStore } from '@/stores/sidebar'
+import { useUserStore } from '@/stores/user'
 
 const sidebar = useSidebarStore()
+const userStore = useUserStore()
 
 defineOptions({
   name: 'SideMenu'
@@ -32,12 +34,13 @@ const getMenuFromRoute = (root: RouteItem[]): MenuOption[] => {
   return root.map((item) => {
     return {
       ...item,
+      show: item.needAuth && !userStore.hasLoggedIn ? false : item.show,
       children: item.children ? getMenuFromRoute(item.children) : item.children
     }
   })
 }
 
-const menuOptions: MenuOption[] = getMenuFromRoute(route)
+const menuOptions = computed<MenuOption[]>(() => getMenuFromRoute(route))
 
 const handleUpdateValue = (key: string) => {
   menuValue.value = key
