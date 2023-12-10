@@ -1,5 +1,5 @@
 export interface SiteHeaderMenuItem {
-  label: string;
-  show?: boolean;
-  onClick?: () => void;
+  label: string
+  show?: boolean
+  onClick?: () => void
 }

@@ -1,11 +1,8 @@
 <template>
-  <div class="site-footer">
-    Made with ❤️ By Youranreus
-  </div>
+  <div class="site-footer">Made with ❤️ By Youranreus</div>
 </template>
 
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss" scoped>
 .site-footer {

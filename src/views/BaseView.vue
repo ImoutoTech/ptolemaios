@@ -7,13 +7,12 @@ import SiteFooter from '@/components/layout/SiteFooter.vue'
 import { useSidebarStore } from '@/stores/sidebar'
 
 const sidebar = useSidebarStore()
-
 </script>
 
 <template>
   <n-layout has-sider>
     <n-layout-sider
-      bordered 
+      bordered
       :collapsed="sidebar.collapsed"
       collapse-mode="width"
       :collapsed-width="64"

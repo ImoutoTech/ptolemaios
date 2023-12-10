@@ -10,25 +10,27 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { SITE_TITLE } from '@/config/index'
 import { type SiteHeaderMenuItem } from './types'
 
 defineOptions({
-  name: 'SiteHeader',
+  name: 'SiteHeader'
 })
 
-const menu: SiteHeaderMenuItem[] = [
-  {
-    label: '登录',
-  },
-  {
-    label: '注册',
-  },
-  {
-    label: '登出',
-  }
-];
-
+const menu = computed<SiteHeaderMenuItem[]>(() => {
+  return [
+    {
+      label: '登录'
+    },
+    {
+      label: '注册'
+    },
+    {
+      label: '登出'
+    }
+  ]
+})
 </script>
 
 <style lang="scss" scoped>
