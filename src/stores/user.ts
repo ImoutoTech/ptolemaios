@@ -3,14 +3,14 @@ import { defineStore } from 'pinia'
 
 interface UserData {
   id: number
-  role: '0' | '1' | ''
+  role: 0 | 1
   avatar: string
   email: string
 }
 
 const INIT_USER_DATA: UserData = {
   id: -1,
-  role: '',
+  role: 1,
   avatar: '',
   email: ''
 }
@@ -22,7 +22,7 @@ export const useUserStore = defineStore(
 
     const token = ref('')
 
-    const hasLoggedIn = computed(() => userData.id !== -1 && token.value)
+    const hasLoggedIn = computed(() => userData.id !== -1 && !!token.value)
 
     const userLogin = (data: UserData, tk: string) => {
       Object.assign(userData, data)

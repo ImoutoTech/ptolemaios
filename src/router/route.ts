@@ -31,6 +31,14 @@ const route: RouteItem[] = [
     label: '首页',
     icon: renderIcon(HomeOutline),
     show: true
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: 'views/user/LoginCallback.vue',
+    key: 'login',
+    label: '登录',
+    show: false
   }
 ]
 
