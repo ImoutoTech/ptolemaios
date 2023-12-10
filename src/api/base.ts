@@ -30,7 +30,6 @@ export const api = createAlova({
     // 当使用GlobalFetch请求适配器时，第一个参数接收Response对象
     // 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
     onSuccess: async (response) => {
-      console.log('🤔 response 是 ', response)
       const json = response.data
 
       // 自定义拦截逻辑

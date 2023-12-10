@@ -70,6 +70,14 @@ const route: RouteItem[] = [
         key: 'panel-server',
         label: '服务器状态',
         show: true
+      },
+      {
+        path: 'chatgpt',
+        name: 'panel-chatgpt',
+        component: 'views/panel/IndexView.vue',
+        key: 'panel-chatgpt',
+        label: 'ChatGPT',
+        show: true
       }
     ]
   }
