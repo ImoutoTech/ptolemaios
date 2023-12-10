@@ -44,6 +44,15 @@ const route: RouteItem[] = [
     needAuth: false
   },
   {
+    path: '/info',
+    name: 'info',
+    component: 'views/GlobalResult.vue',
+    key: 'info',
+    label: '发生了一些事情',
+    show: false,
+    needAuth: false
+  },
+  {
     path: '/panel',
     name: 'panel',
     component: 'views/HomeView.vue',

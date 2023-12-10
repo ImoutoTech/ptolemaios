@@ -4,20 +4,20 @@ import { RouterView } from 'vue-router'
 import SideMenu from '@/components/layout/SideMenu.vue'
 import SiteHeader from '@/components/layout/SiteHeader.vue'
 import SiteFooter from '@/components/layout/SiteFooter.vue'
-import { useSidebarStore } from '@/stores/sidebar'
+import { useGlobalStore } from '@/stores/global'
 
-const sidebar = useSidebarStore()
+const global = useGlobalStore()
 </script>
 
 <template>
   <n-layout has-sider content-style="min-height: 100vh">
     <n-layout-sider
       bordered
-      :collapsed="sidebar.collapsed"
+      :collapsed="global.sidebarCollapsed"
       collapse-mode="width"
       :collapsed-width="64"
-      @collapse="sidebar.toggleSideBar(true)"
-      @expand="sidebar.toggleSideBar(false)"
+      @collapse="global.toggleSideBar(true)"
+      @expand="global.toggleSideBar(false)"
       show-trigger
     >
       <side-menu />

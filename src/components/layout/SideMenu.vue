@@ -2,7 +2,7 @@
   <n-menu
     :value="menuValue"
     :options="menuOptions"
-    :collapsed="sidebar.collapsed"
+    :collapsed="global.sidebarCollapsed"
     :collapsed-width="64"
     :collapsed-icon-size="22"
     @update:value="handleUpdateValue"
@@ -15,10 +15,10 @@ import type { MenuOption } from 'naive-ui'
 import route, { type RouteItem } from '@/router/route'
 import { useRouter, useRoute } from 'vue-router'
 
-import { useSidebarStore } from '@/stores/sidebar'
+import { useGlobalStore } from '@/stores/global'
 import { useUserStore } from '@/stores/user'
 
-const sidebar = useSidebarStore()
+const global = useGlobalStore()
 const userStore = useUserStore()
 
 defineOptions({
