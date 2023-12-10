@@ -35,7 +35,8 @@ const getMenuFromRoute = (root: RouteItem[]): MenuOption[] => {
     return {
       ...item,
       show: item.needAuth && !userStore.hasLoggedIn ? false : item.show,
-      children: item.children ? getMenuFromRoute(item.children) : item.children
+      children: item.children ? getMenuFromRoute(item.children) : item.children,
+      component: undefined
     }
   })
 }

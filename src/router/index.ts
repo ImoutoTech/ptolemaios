@@ -14,11 +14,7 @@ const traverseRoute = (root: RouteItem[], needAuth = false): RouteRecordRaw[] =>
         needAuth: needAuth || item.needAuth,
         title: item.label
       },
-      children: [],
-      component:
-        typeof item.component === 'string'
-          ? () => import(/* @vite-ignore */ `../${item.component}`)
-          : item.component
+      children: []
     }
 
     if (item.children && Array.isArray(item.children) && item.children.length) {

@@ -7,7 +7,7 @@ export interface RouteBaseInfo {
   path: string
   name: string
   key: string
-  component: string | Component
+  component: Component
   label: string
   icon?: MenuOption['icon']
   show: boolean
@@ -28,7 +28,7 @@ const route: RouteItem[] = [
   {
     path: '/',
     name: 'landing',
-    component: 'views/HomeView.vue',
+    component: () => import('../views/HomeView.vue'),
     key: 'landing',
     label: '首页',
     icon: renderIcon(HomeOutline),
@@ -38,7 +38,7 @@ const route: RouteItem[] = [
   {
     path: '/login',
     name: 'login',
-    component: 'views/user/LoginCallback.vue',
+    component: () => import('../views/user/LoginCallback.vue'),
     key: 'login',
     label: '登录',
     show: false,
@@ -47,7 +47,7 @@ const route: RouteItem[] = [
   {
     path: '/info',
     name: 'info',
-    component: 'views/GlobalResult.vue',
+    component: () => import('../views/GlobalResult.vue'),
     key: 'info',
     label: '发生了一些事情',
     show: false,
@@ -66,7 +66,7 @@ const route: RouteItem[] = [
       {
         path: 'server',
         name: 'panel-server',
-        component: 'views/panel/IndexView.vue',
+        component: () => import('../views/panel/IndexView.vue'),
         key: 'panel-server',
         label: '服务器状态',
         show: true
@@ -74,7 +74,7 @@ const route: RouteItem[] = [
       {
         path: 'chatgpt',
         name: 'panel-chatgpt',
-        component: 'views/panel/IndexView.vue',
+        component: () => import('../views/panel/IndexView.vue'),
         key: 'panel-chatgpt',
         label: 'ChatGPT',
         show: true
