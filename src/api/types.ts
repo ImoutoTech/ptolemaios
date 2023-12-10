@@ -13,7 +13,7 @@ export type UserValidateData = Restful<{
 
 export type UserDataResult = Restful<{
   email: string
-  nickname: number
+  nickname: string
   avatar: string
   id: number
   role: 0 | 1
