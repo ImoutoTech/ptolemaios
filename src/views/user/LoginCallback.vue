@@ -90,7 +90,13 @@ onValidated(() => {
 })
 
 onGotUserData(() => {
-  userStore.userLogin(userData.value.data, route.query.ticket as string)
+  userStore.userLogin(
+    {
+      ...userData.value.data,
+      role: Number(userData.value.data.role) as 0 | 1
+    },
+    route.query.ticket as string
+  )
   redirectTimer.value = setTimeout(loginRedirect, 3000)
 })
 </script>
