@@ -1,4 +1,5 @@
 import { h, type Component } from 'vue'
+import { RouterView } from 'vue-router'
 import { NIcon, type MenuOption } from 'naive-ui'
 import { HomeOutline, PlanetOutline } from '@vicons/ionicons5'
 
@@ -6,11 +7,11 @@ export interface RouteBaseInfo {
   path: string
   name: string
   key: string
-  component: string
+  component: string | Component
   label: string
   icon?: MenuOption['icon']
   show: boolean
-  needAuth: boolean
+  needAuth?: boolean
 }
 
 export interface RouteItem extends RouteBaseInfo {
@@ -55,12 +56,22 @@ const route: RouteItem[] = [
   {
     path: '/panel',
     name: 'panel',
-    component: 'views/HomeView.vue',
     key: 'panel',
+    component: RouterView,
     label: '快捷面板',
     icon: renderIcon(PlanetOutline),
     show: true,
-    needAuth: true
+    needAuth: true,
+    children: [
+      {
+        path: 'server',
+        name: 'panel-server',
+        component: 'views/panel/IndexView.vue',
+        key: 'panel-server',
+        label: '服务器状态',
+        show: true
+      }
+    ]
   }
 ]
 

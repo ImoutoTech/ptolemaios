@@ -5,5 +5,6 @@ export const ENV = {
   API_URL: import.meta.env.VITE_API_URL,
   SSO_URL: import.meta.env.VITE_SSO_URL,
   SSO_API: import.meta.env.VITE_SSO_API,
-  SSO_KEY: import.meta.env.VITE_SSO_KEY
+  SSO_KEY: import.meta.env.VITE_SSO_KEY,
+  CONFIG_API: import.meta.env.VITE_CONFIG_API
 }

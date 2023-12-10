@@ -26,7 +26,7 @@ const global = useGlobalStore()
       <n-layout-header bordered>
         <site-header />
       </n-layout-header>
-      <n-layout-content content-style="padding: 24px;">
+      <n-layout-content>
         <RouterView />
       </n-layout-content>
       <n-layout-footer bordered position="absolute">
