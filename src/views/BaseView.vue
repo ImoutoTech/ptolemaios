@@ -10,7 +10,7 @@ const sidebar = useSidebarStore()
 </script>
 
 <template>
-  <n-layout has-sider>
+  <n-layout has-sider content-style="min-height: 100vh">
     <n-layout-sider
       bordered
       :collapsed="sidebar.collapsed"
@@ -29,7 +29,7 @@ const sidebar = useSidebarStore()
       <n-layout-content content-style="padding: 24px;">
         <RouterView />
       </n-layout-content>
-      <n-layout-footer bordered>
+      <n-layout-footer bordered position="absolute">
         <site-footer />
       </n-layout-footer>
     </n-layout>
