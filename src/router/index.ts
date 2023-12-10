@@ -6,12 +6,12 @@ import { SITE_TITLE } from '@/config'
 import { useUserStore } from '@/stores/user'
 import { useGlobalStore } from '@/stores/global'
 
-const traverseRoute = (root: RouteItem[]): RouteRecordRaw[] => {
+const traverseRoute = (root: RouteItem[], needAuth = false): RouteRecordRaw[] => {
   return root.map((item) => {
     const newItem: RouteRecordRaw = {
       ...item,
       meta: {
-        needAuth: item.needAuth,
+        needAuth: needAuth || item.needAuth,
         title: item.label
       },
       children: [],
@@ -19,7 +19,7 @@ const traverseRoute = (root: RouteItem[]): RouteRecordRaw[] => {
     }
 
     if (item.children && Array.isArray(item.children) && item.children.length) {
-      newItem.children = traverseRoute(item.children)
+      newItem.children = traverseRoute(item.children, item.needAuth)
     }
     return newItem
   })
