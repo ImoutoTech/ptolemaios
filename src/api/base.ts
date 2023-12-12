@@ -1,19 +1,25 @@
-import { createAlova } from 'alova'
+import type { Ref } from 'vue'
+import { createAlova, type AlovaOptions } from 'alova'
 import VueHook from 'alova/vue'
-import { axiosRequestAdapter } from '@alova/adapter-axios'
+import { axiosRequestAdapter, type AlovaAxiosRequestConfig } from '@alova/adapter-axios'
+import type { AxiosResponse, AxiosResponseHeaders } from 'axios'
 
 import { ENV } from '@/config'
 
 import { useUserStore } from '@/stores/user'
 
-export const api = createAlova({
+const baseApiConfig: AlovaOptions<
+  Ref<unknown>,
+  Ref<unknown>,
+  AlovaAxiosRequestConfig,
+  AxiosResponse<any, any>,
+  AxiosResponseHeaders
+> = {
   // VueHook用于创建ref状态，包括请求状态loading、响应数据data、请求错误对象error等
   statesHook: VueHook,
 
   // 请求适配器
   requestAdapter: axiosRequestAdapter(),
-
-  baseURL: ENV.API_URL,
 
   beforeRequest(method) {
     // 假设我们需要添加token到请求头
@@ -52,4 +58,19 @@ export const api = createAlova({
     //   return err
     // }
   }
+}
+
+export const api = createAlova({
+  ...baseApiConfig,
+  baseURL: ENV.API_URL
+})
+
+export const nezhaAPI = createAlova({
+  ...baseApiConfig,
+  baseURL: ENV.NEZHA_API
+})
+
+export const ssoAPI = createAlova({
+  ...baseApiConfig,
+  baseURL: ENV.SSO_API
 })
